@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.smsapi.model.ChangePasswordModel;
 import com.smsapi.model.UserCacheModel;
-import com.smsapi.model.UserCacheModel;
 import com.smsapi.model.UserModel;
 import com.smsapi.service.UserService;
 

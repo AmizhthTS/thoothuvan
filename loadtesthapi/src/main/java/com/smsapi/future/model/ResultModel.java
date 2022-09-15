@@ -21,9 +21,12 @@ public class ResultModel {
 	
 	private long endtime=System.currentTimeMillis();
 	
+	@SuppressWarnings("unused")
 	private long accecptancetps;
 	
-	public ResultModel( int totalthread) {
+	public ResultModel(String testid, int totalthread) {
+		
+		this.testid=testid;
 		
 		this.totalthread=totalthread;
 	}

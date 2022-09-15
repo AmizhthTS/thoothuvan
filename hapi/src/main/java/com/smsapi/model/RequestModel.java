@@ -63,6 +63,7 @@ public class RequestModel implements Serializable {
 		return gson.toJson(this, RequestModel.class);
 	}
 
+	@SuppressWarnings("deprecation")
 	public String getResponse() {
 		
 		Gson gson=new Gson();

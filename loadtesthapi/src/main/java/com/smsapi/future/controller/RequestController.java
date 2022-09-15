@@ -1,14 +1,20 @@
 package com.smsapi.future.controller;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.smsapi.future.model.ResultModel;
 import com.smsapi.future.model.ResultPoolModel;
 import com.smsapi.future.model.TestRequestM;
 import com.smsapi.future.model.TestStatus;
+import com.smsapi.future.model.TestSummary;
 import com.smsapi.future.service.SMSSenderService;
 
 @RestController
@@ -20,7 +26,7 @@ public class RequestController {
 	
 	@Autowired ResultPoolModel resultpool;
 	
-	@PostMapping("/starttest")
+	@PostMapping("/teststart")
 	public String starttest(@RequestBody TestRequestM requestmodel) {
 		
 		if(smssenderservice.startTest(requestmodel)) {
@@ -39,6 +45,18 @@ public class RequestController {
 
 		return teststatus.isRunning();
 	
+	}
+
+	@PostMapping("/testsummary")
+	public ResponseEntity<?>  gettestsummary() {
+
+		List<TestSummary> list=new ArrayList<TestSummary>();
+		
+		resultpool.getResultpool().forEach((k,v)->{
+				list.add(TestSummary.builder().date(new Date(((ResultModel)v).getStarttime())).acceptancetps(((ResultModel)v).getAccecptancetps()).build());
+		});
+		return ResponseEntity.ok().body(list);
+		
 	}
 
 	

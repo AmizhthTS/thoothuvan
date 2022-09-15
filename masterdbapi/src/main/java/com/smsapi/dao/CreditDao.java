@@ -7,8 +7,6 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Repository;
 
 import com.smsapi.model.CreditModel;
-import com.smsapi.model.UserAloneModel;
-import com.smsapi.model.UserModel;
 
 
 @Repository

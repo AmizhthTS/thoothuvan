@@ -110,11 +110,11 @@ public class MessagePublisherPool {
 		
 		Map<String,RedisTemplate<String, Object>> poolmap=redistemplatepool.getPoolmap();
 		
-		Iterator itr=poolmap.keySet().iterator();
+		Iterator<String> itr=poolmap.keySet().iterator();
 		
 		while(itr.hasNext()) {
 			
-			String redisname=itr.next().toString();
+			String redisname=itr.next();
 			
 			System.out.println("redisname : "+redisname+" RedisMessagePublisher");
 			MessagePublisher mb=new RedisMessagePublisher(poolmap.get(redisname), queuename);

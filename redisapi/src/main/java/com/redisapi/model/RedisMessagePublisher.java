@@ -6,7 +6,6 @@ import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
 
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.listener.ChannelTopic;
 
 public class RedisMessagePublisher implements MessagePublisher {
 	
@@ -42,7 +41,6 @@ public class RedisMessagePublisher implements MessagePublisher {
 
 
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		

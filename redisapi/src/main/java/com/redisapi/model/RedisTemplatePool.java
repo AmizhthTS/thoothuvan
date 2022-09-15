@@ -52,6 +52,7 @@ public class RedisTemplatePool {
 	}
 	
 		
+	@SuppressWarnings("deprecation")
 	private JedisConnectionFactory jedisConnectionFactory(RedisPropertiesM prop) {
 		JedisConnectionFactory jedisConFactory
 	      = new JedisConnectionFactory();
@@ -176,11 +177,11 @@ public class RedisTemplatePool {
 		
 		Map<String,Map<String,Long>> redisqueuecountmap=new HashMap<String,Map<String,Long>>();
 		
-		Iterator itr=poolmap.keySet().iterator();
+		Iterator<String> itr=poolmap.keySet().iterator();
 		
 		while(itr.hasNext()) {
 			
-			String redisid=itr.next().toString();
+			String redisid=itr.next();
 			
 			if(queuenamelist!=null) {
 				

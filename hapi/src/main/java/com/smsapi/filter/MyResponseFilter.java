@@ -8,6 +8,7 @@ import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
 @JsonFilter("myFilter")
 public class MyResponseFilter {
 
+	@SuppressWarnings("unused")
 	public void doFilter() {
 		SimpleBeanPropertyFilter codesFilter = SimpleBeanPropertyFilter
 				  .serializeAllExcept("errors");

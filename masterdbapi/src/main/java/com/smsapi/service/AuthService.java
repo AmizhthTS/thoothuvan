@@ -35,10 +35,12 @@ public class AuthService {
 	@Autowired
 	private JwtTokenUtil jwtTokenUtil;
 	
+	@SuppressWarnings("unused")
 	@Autowired
 	private AuthenticationManager authenticationManager;
 
 	
+	@SuppressWarnings("unused")
 	public UserModel login(UserModel userDTO)  {
 		List<SimpleGrantedAuthority> grantedAuthorities = new ArrayList<SimpleGrantedAuthority>();
 

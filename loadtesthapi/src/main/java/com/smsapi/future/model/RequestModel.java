@@ -1,7 +1,6 @@
 package com.smsapi.future.model;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
 
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotBlank;
@@ -21,9 +20,6 @@ public class RequestModel implements Serializable {
 	private String username;
 	
 	private String password;
-	
-	private LocalDateTime createdtime= LocalDateTime.now();
-
 	
 	
 	@NotBlank(message= "fullmessage not blank")

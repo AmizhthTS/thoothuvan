@@ -67,7 +67,7 @@ public class UserService {
                             .when()
                             .post("/sms-api/redis/getall/queueredisproperties");
 
-        http://localhost:6003/
+     //   http://localhost:6003/
                             
         if(response.getStatusCode()==200) {
         	return gson.fromJson(response.then().extract().asString(), RedisPropertiesList.class);

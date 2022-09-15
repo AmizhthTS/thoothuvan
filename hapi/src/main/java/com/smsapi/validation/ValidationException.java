@@ -9,6 +9,11 @@ import lombok.Data;
 @Data
 public class ValidationException extends RuntimeException{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	ErrorModel errormodel;
 	
 	HttpStatus httpstatus;

@@ -17,6 +17,11 @@ import java.util.function.Function;
 @Component
 public class JwtTokenUtil implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	@Value("${security.key}")
 	private  String secretKey;
 

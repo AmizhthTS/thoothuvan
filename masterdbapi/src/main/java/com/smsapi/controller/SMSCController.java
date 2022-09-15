@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.smsapi.model.SMSCModel;
-import com.smsapi.model.UserModel;
 import com.smsapi.service.SMSCService;
 
 @RestController

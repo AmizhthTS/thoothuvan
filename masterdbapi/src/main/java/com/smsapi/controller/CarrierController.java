@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.smsapi.dao.CarrierDaoUpdate;
 import com.smsapi.model.CarrierModel;
 import com.smsapi.service.CarrierService;
 
@@ -21,9 +20,7 @@ public class CarrierController {
 	private CarrierService authService;
 
 
-	@Autowired
-	private CarrierDaoUpdate userUpdateDao;
-	
+		
 	
 	@PostMapping("/create")
 	public ResponseEntity<?> createUser(@RequestBody CarrierModel createDTO) {
