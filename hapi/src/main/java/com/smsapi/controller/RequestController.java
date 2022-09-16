@@ -42,7 +42,8 @@ public class RequestController {
 		List<String> queuenamelist=new ArrayList<String>();
 		
 		queuenamelist.add(QueueName.ROUTER);
-		
+		queuenamelist.add(QueueName.SMSC);
+
 		return ResponseEntity.ok().body(usercache.getQueueCountMap(queuenamelist));
 	}
 

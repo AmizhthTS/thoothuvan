@@ -5,8 +5,8 @@
     <artifactId>thoothuvan</artifactId>
     <version>1.0</version>
   </parent>
-  <artifactId>hapi</artifactId>
-  <dependencies>
+  <artifactId>smscconnector</artifactId>
+   <dependencies>
   
   <dependency>
   <groupId>thoothuvan</groupId>
@@ -14,16 +14,21 @@
   <version>1.0</version>
   </dependency>
   
-  <dependency>
+   <dependency>
   <groupId>thoothuvan</groupId>
-  <artifactId>validator</artifactId>
+  <artifactId>userservice</artifactId>
   <version>1.0</version>
   </dependency>
-   <dependency>
+  
+  
+     <dependency>
   <groupId>thoothuvan</groupId>
   <artifactId>main</artifactId>
   <version>1.0</version>
   </dependency>
+  
+  
+  
   </dependencies>
   
   

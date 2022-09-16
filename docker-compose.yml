@@ -9,3 +9,6 @@ services:
   loadtesthapi:
     image: thoothuvan_loadtesthapi:1.0
     build: loadtesthapi
+  smscconnector:
+    image: thoothuvan_smscconnector:1.0
+    build: smscconnector

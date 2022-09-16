@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
 
+import org.springframework.data.redis.connection.RedisConnection;
 import org.springframework.data.redis.core.RedisTemplate;
 
 public class RedisMessagePublisher implements MessagePublisher {
@@ -24,8 +25,23 @@ public class RedisMessagePublisher implements MessagePublisher {
 
     public void publish(final Object message) {
         
-        redisTemplate.getConnectionFactory().getConnection().lPush(queuename.getBytes(), getBytes(message));
+        RedisConnection connection=redisTemplate.getConnectionFactory().getConnection();
+        
+        connection.lPush(queuename.getBytes(), getBytes(message));
+        
+        close(connection);
     }
+    
+    private void close(RedisConnection connection) {
+		try {
+			
+			connection.close();
+			
+		}catch(Exception e) {
+			
+		}
+		
+	}
     
 
     private byte[] getBytes(final Object message) {

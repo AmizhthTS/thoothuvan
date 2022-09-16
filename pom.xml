@@ -89,6 +89,10 @@
   	<module>redisapi</module>
   	<module>hapi</module>
   	<module>loadtesthapi</module>
+  	<module>smscconnector</module>
+  	<module>userservice</module>
+  	<module>validator</module>
+  	<module>main</module>
   </modules>
   
   
