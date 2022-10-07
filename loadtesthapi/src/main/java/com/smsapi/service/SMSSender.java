@@ -9,9 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.google.gson.Gson;
-import com.smsapi.model.RequestModel;
-import com.smsapi.model.ResponseModel;
 import com.smsapi.model.ResultPoolModel;
+import com.smsapi.validator.model.RequestModel;
+import com.smsapi.validator.model.ResponseModel;
 
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;

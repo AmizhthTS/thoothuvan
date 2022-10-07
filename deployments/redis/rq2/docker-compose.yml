@@ -1,0 +1,13 @@
+version: "3.9"
+services:
+  rq2:
+    image: redis
+    restart: always
+    volumes: 
+      - /home/data/redis/rq2:/lib/postgresql/data
+    networks:
+      - thuthoovannw      
+networks:
+  thuthoovannw:
+    external: true        
+ 

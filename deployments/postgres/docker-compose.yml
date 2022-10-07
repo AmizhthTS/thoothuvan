@@ -1,0 +1,18 @@
+version: "3.9"
+services:
+  postgres:
+    image: postgres:14.1-alpine
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - '5432:5432'
+    volumes: 
+      - /home/data/thoothuvanpostgres:/var/lib/postgresql/data
+    networks:
+      - thuthoovannw      
+networks:
+  thuthoovannw:
+    external: true        
+ 

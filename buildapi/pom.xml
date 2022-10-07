@@ -1,0 +1,56 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>thoothuvan</groupId>
+    <artifactId>thoothuvan</artifactId>
+    <version>1.0</version>
+  </parent>
+  <artifactId>buildapi</artifactId>
+  
+  <dependencies>
+  
+  <dependency>
+  <groupId>thoothuvan</groupId>
+  <artifactId>redisapi</artifactId>
+  <version>1.0</version>
+  </dependency>
+  
+  <dependency>
+  <groupId>thoothuvan</groupId>
+  <artifactId>validator</artifactId>
+  <version>1.0</version>
+  </dependency>
+ 
+    <dependency>
+  <groupId>thoothuvan</groupId>
+  <artifactId>smscconnector</artifactId>
+  <version>1.0</version>
+  </dependency>
+  
+  <dependency>
+  <groupId>thoothuvan</groupId>
+  <artifactId>hapi</artifactId>
+  <version>1.0</version>
+  </dependency>
+  
+  <dependency>
+  <groupId>thoothuvan</groupId>
+  <artifactId>masterdbapi</artifactId>
+  <version>1.0</version>
+  </dependency>
+  </dependencies>
+  
+  
+   <build>
+		<plugins>
+
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+                <mainClass>com.smsapi.release.Main</mainClass>
+            </configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>

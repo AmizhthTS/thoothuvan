@@ -92,7 +92,11 @@
   	<module>smscconnector</module>
   	<module>userservice</module>
   	<module>validator</module>
-  	<module>main</module>
+  	<module>simulator</module>
+  	<module>routeservice</module>
+  	<module>qdbidao</module>
+  	<module>buildapi</module>
+  	<module>redisqmonitor</module>
   </modules>
   
   

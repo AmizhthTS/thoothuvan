@@ -19,25 +19,8 @@
   <artifactId>validator</artifactId>
   <version>1.0</version>
   </dependency>
-   <dependency>
-  <groupId>thoothuvan</groupId>
-  <artifactId>main</artifactId>
-  <version>1.0</version>
-  </dependency>
+  
   </dependencies>
   
-  
-   <build>
-		<plugins>
 
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-				<configuration>
-                <mainClass>com.smsapi.SpringBootSMSApiApplication</mainClass>
-            </configuration>
-			</plugin>
-		</plugins>
-	</build>
-  
 </project>

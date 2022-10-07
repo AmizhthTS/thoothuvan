@@ -2,7 +2,6 @@ package com.redisapi.model;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -15,13 +14,9 @@ import lombok.Data;
 @Data
 public class RedisTemplatePool {
 	
-	private Map<String,RedisTemplate<String, Object>> poolmap=new HashMap<String,RedisTemplate<String, Object>>();
+	private Map<String/*redisidname*/,RedisInfo> redispoolinfomap=new HashMap<String,RedisInfo>();
 
-	private Map<String,Integer> indexmap=new HashMap<String,Integer>();
-	
-	private List<String> availableredislist=null;
-	
-	private Map<String,List<String>> activeredismap=new HashMap<String,List<String>>();
+	private Map<String/*queuename*/,List<QueueModel>> queueinfomap=new HashMap<String,List<QueueModel>>();
 	
 	private boolean isRetry=false;
 	
@@ -30,21 +25,17 @@ public class RedisTemplatePool {
 		
 		List<RedisPropertiesListModel> list=redispropertieslist.getRedislist();
 		
-		availableredislist=new ArrayList<String>();
-		
 		this.isRetry=isRetry;
 		
 			for(int i=0;i<list.size();i++) {
 				
 			String redisname=list.get(i).getName();
 			
-			availableredislist.add(redisname);
-			
 			RedisTemplate<String, Object> template=redisTemplate(list.get(i).getProp());
 			
 			template.afterPropertiesSet();
 			
-			poolmap.put(redisname,template);
+			redispoolinfomap.put(redisname,RedisInfo.builder().redisid(redisname).redistemplate(template).build());
 			
 			
 		}
@@ -72,136 +63,29 @@ public class RedisTemplatePool {
 	
 	
 	
-	public void refreshAvailability(List<String> queuenamelist, List<String> redisidlist) {
-		
-		for(int j=0;j<queuenamelist.size();j++) {
-			
-			String queuename=queuenamelist.get(j);
-			
-			List<String> availablepool=new ArrayList<String>();
-			
-
-				for(int i=0;i<redisidlist.size();i++) {
-					
-				String redisid=availableredislist.get(i);
-				
-				if(isConnected(poolmap.get(redisid))) {
-					
-					if(!isQueued(queuename,poolmap.get(redisid))) {
-					
-						availablepool.add(redisid);
-
-					}
-				}
-			}
-			
-			
-			activeredismap.put(queuename, availablepool);
-		}
-		
-	}
 	
-	
-	private boolean isQueued(String queuename, RedisTemplate<String, Object> redisTemplate) {
-		
-			
-		//	long count=getCount(queuename, redisTemplate);
-			long count=0;
-			if(isRetry) {
-				
-				if(count>15000) {
-					
-					return true;
-				}else {
-					
-					return false;
-				}
-			}else {
-				
-				if(count>10000) {
-					
-					return true;
-				}else {
-					
-					return false;
-				}
-			}
-			
-		}
 
-
-	private long getCount(String queuename, RedisTemplate<String, Object> redisTemplate) {
+	public void addQueue(String queuename) {
 		
-		RedisConnection connection=null;
-		
-		long result=0;
-		
-		try {
-			connection=redisTemplate.getConnectionFactory().getConnection();
+		if(!queueinfomap.containsKey(queuename)) {
 			
-			Long e= connection.lLen(queuename.getBytes());
-			
-			if(e!=null) {
-				
-				result=e;
-			}
-			
-		}finally {
-			
-			connection.close();
+			queueinfomap.put(queuename, getList(queuename));
 		}
-		
-		return result;
 	}
 
-	private boolean isConnected(RedisTemplate<String, Object> redisTemplate) {
-		
-		RedisConnection connection=null;
-		
-		try {
-			connection=redisTemplate.getConnectionFactory().getConnection();
-			
-			if(!connection.isClosed()) {
-				
-				return true;
-			}
-		}finally {
-			
-			connection.close();
-		}
-		return false;
-	}
-
+	private List<QueueModel> getList(String queuename) {
 	
-	public Map<String,Map<String,Long>> getQueueCountMap(List<String> queuenamelist){
-		
-		Map<String,Map<String,Long>> redisqueuecountmap=new HashMap<String,Map<String,Long>>();
-		
-		Iterator<String> itr=poolmap.keySet().iterator();
-		
-		while(itr.hasNext()) {
-			
-			String redisid=itr.next();
-			
-			if(queuenamelist!=null) {
-				
-				Map<String ,Long > queuemap=new HashMap<String,Long>();
-				for(int i=0;i<queuenamelist.size();i++) {
-				
-					String queuename=queuenamelist.get(i);
-					
-					queuemap.put(queuename, getCount(queuename, poolmap.get(redisid)));
-					
-				}
-				
-				redisqueuecountmap.put(redisid, queuemap);
-			}
-		}
-		
-		return redisqueuecountmap;
-	}
-
-
+	List<QueueModel> list =new ArrayList<QueueModel>();
 	
+	redispoolinfomap.forEach((redisid,redisinfo)->{
+		
+		list.add(QueueModel.builder().queuename(queuename).connectionavailable(true).redisinfo(redisinfo).build());
+	});
+	
+	return list;
+	}
+	
+
+
 	
 }

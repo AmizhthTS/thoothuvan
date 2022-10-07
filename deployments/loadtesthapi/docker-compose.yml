@@ -1,0 +1,13 @@
+version: "3.9"
+services:
+  loadtesthapi:
+    image: thoothuvan_loadtesthapi:1.0
+    restart: always
+    ports:
+      - '7003:8080'
+    networks:
+      - thuthoovannw
+networks:
+  thuthoovannw:
+    external: true        
+ 

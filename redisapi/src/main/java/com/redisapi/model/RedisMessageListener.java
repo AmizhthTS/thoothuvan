@@ -13,11 +13,9 @@ public class RedisMessageListener {
 	
 	MessagePublisherPool messagePublisherPool;
 	
-	String queuename;
 
-	public RedisMessageListener(final MessagePublisherPool messagePublisherPool,final RedisTemplate<String, Object> redisTemplate, final String queuename) {
+	public RedisMessageListener(final MessagePublisherPool messagePublisherPool,final RedisTemplate<String, Object> redisTemplate) {
 	        this.redisTemplate = redisTemplate;
-	        this.queuename = queuename;
 	        this.messagePublisherPool=messagePublisherPool;
 	}
 
@@ -42,8 +40,8 @@ public class RedisMessageListener {
 	private void send(Object data) {
 		
 		while(true) {
-			if(messagePublisherPool.isAvailable(QueueName.SMSC)) {
-			messagePublisherPool.getPublisher(QueueName.SMSC).publish(data);
+			if(messagePublisherPool.isAvailable(QueueName.PARQUET)) {
+			messagePublisherPool.getPublisher(QueueName.PARQUET).publish(data);
 			return;
 			}
 			}
@@ -72,7 +70,7 @@ public class RedisMessageListener {
 		RedisConnection connection=null;
 		try {
 			connection=redisTemplate.getConnectionFactory().getConnection();
-		  return connection.lPop(queuename.getBytes());
+		  return connection.lPop("router".getBytes());
 		}catch(Exception e) {
 			
 		}finally {

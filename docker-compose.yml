@@ -1,14 +1,5 @@
 version: "3.9"
 services:
-  masterdbapi:
-    image: thoothuvan_masterdbapi:1.0       
-    build: masterdbapi
-  hapi:
-    image: thoothuvan_hapi:1.0    
-    build: hapi
-  loadtesthapi:
-    image: thoothuvan_loadtesthapi:1.0
-    build: loadtesthapi
-  smscconnector:
-    image: thoothuvan_smscconnector:1.0
-    build: smscconnector
+  buildapi:
+    image: thoothuvan_buildapi:1.0       
+    build: buildapi

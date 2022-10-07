@@ -1,0 +1,15 @@
+version: "3.9"
+services:
+  masterapilb:
+    image: thoothuvan_buildapi:1.0
+    restart: always
+    ports:
+      - '7001:8080'
+    environment:
+      module: "masterdbapi"       
+    networks:
+      - thuthoovannw
+networks:
+  thuthoovannw:
+    external: true        
+ 
