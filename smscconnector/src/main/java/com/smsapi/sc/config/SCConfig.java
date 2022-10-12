@@ -12,11 +12,11 @@ import org.springframework.context.annotation.Scope;
 
 import com.cloudhopper.smpp.SmppBindType;
 import com.cloudhopper.smpp.SmppSessionConfiguration;
-import com.redisapi.model.MessageListener;
-import com.redisapi.model.MessageListenerPool;
 import com.redisapi.model.MessagePublisherPool;
 import com.redisapi.model.RedisTemplatePool;
 import com.smsapi.masterdbapi.model.SMSCModel;
+import com.smsapi.sc.listener.MessageListener;
+import com.smsapi.sc.listener.MessageListenerPool;
 import com.smsapi.sc.model.Stats;
 import com.smsapi.sc.model.TPS;
 import com.smsapi.sc.service.SMSCModelService;

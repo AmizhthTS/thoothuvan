@@ -19,7 +19,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 	    })
 @Configuration
 @EnableScheduling
-@ComponentScan({"com.smsapi.user.*","com.smsapi.user.*.*","com.redisapi.*","com.redisapi.*.*","com.smsapi.hapi.*","com.smsapi.hapi.*.*"})
+@ComponentScan({"com.smsapi.user.*","com.smsapi.user.*.*","com.smsapi.route.*","com.smsapi.route.*.*","com.redisapi.*","com.redisapi.*.*","com.smsapi.hapi.*","com.smsapi.hapi.*.*"})
 public class HAPI {
 
 	public static void main(String[] args) {

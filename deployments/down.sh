@@ -7,3 +7,6 @@ cd ..
 cd smscconnector
 ./down.sh
 cd ..
+cd redisqmonitor
+./down.sh
+cd ..

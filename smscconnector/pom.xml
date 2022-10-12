@@ -20,7 +20,18 @@
   <version>1.0</version>
   </dependency>
 
-  
+  <dependency>
+  <groupId>thoothuvan</groupId>
+  <artifactId>validator</artifactId>
+  <version>1.0</version>
+  </dependency>
+
+   <dependency>
+  <groupId>thoothuvan</groupId>
+  <artifactId>dlt</artifactId>
+  <version>1.0</version>
+  </dependency>
+
    <dependency>
   <groupId>thoothuvan</groupId>
   <artifactId>userservice</artifactId>

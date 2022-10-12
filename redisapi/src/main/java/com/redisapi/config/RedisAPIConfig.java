@@ -20,9 +20,9 @@ public class RedisAPIConfig {
 	@Scope(value = ConfigurableBeanFactory.SCOPE_SINGLETON)
     public boolean indicator() {
 		
-		String model=System.getenv("model");
+		String module=System.getenv("module");
 				
-		if(model.equals("")) {
+		if(module.equals("")) {
 			
 			return true;
 		}else {

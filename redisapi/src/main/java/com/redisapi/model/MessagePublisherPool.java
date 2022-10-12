@@ -5,12 +5,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 
 
 public class MessagePublisherPool {
 
+	static final String COLON=":";
 	 RedisTemplatePool redistemplatepool;
 	 
 	 boolean retry;
@@ -28,7 +27,8 @@ public class MessagePublisherPool {
 		this.retry=retry;
 	}
 	
-	public boolean isAvailable(String queuename) {
+	public boolean isAvailable(String module,String submodule,String username) {
+		String queuename=getQueueName(username,submodule,username);
 		
 		if(!availablemessagepublishermap.containsKey(queuename)) {
 			
@@ -39,6 +39,8 @@ public class MessagePublisherPool {
 		
 	}
 	private void addqueue(String queuename) {
+		
+
 		
 		if(!redistemplatepool.getQueueinfomap().containsKey(queuename)) {
 			
@@ -53,6 +55,13 @@ public class MessagePublisherPool {
 		}
 		
 		setAvailability();
+	}
+
+	private String getQueueName(String module, String submodule, String username) {
+	
+		StringBuffer sb=new StringBuffer();
+				
+		return sb.append(username).append(COLON).append(submodule).append(COLON).append(username).toString();
 	}
 
 	public void setAvailability() {
@@ -94,9 +103,10 @@ public class MessagePublisherPool {
 	}
 	
 	
-	public MessagePublisher getPublisher(String queuename) {
+	public MessagePublisher getPublisher(String module,String submodule,String username) {
 		
-		
+		String queuename=getQueueName(username,submodule,username);
+
 		int seq=0;
 		
 		
