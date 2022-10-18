@@ -1,8 +1,5 @@
 package com.smsapi.sc.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.cloudhopper.smpp.SmppClient;
 import com.cloudhopper.smpp.SmppConstants;
 import com.cloudhopper.smpp.SmppSession;
@@ -13,32 +10,43 @@ import com.cloudhopper.smpp.pdu.EnquireLinkResp;
 import com.cloudhopper.smpp.pdu.SubmitSm;
 import com.cloudhopper.smpp.pdu.SubmitSmResp;
 import com.smsapi.sc.model.SMSResponse;
+import com.smsapi.sc.model.SMSResponse.SMSResponseBuilder;
 import com.smsapi.sc.model.Stats;
 import com.smsapi.sc.model.TPS;
-import com.smsapi.sc.model.SMSResponse.SMSResponseBuilder;
 import com.smsapi.sc.util.ErrorMessage;
 import com.smsapi.sc.util.ResponseStatus;
 
-@Service
-public class SessionService {
 
+public class SessionService implements Runnable{
+	
+	private String threadname;
 
-	@Autowired
 	private DNService dnhandler;
 	
 	private SmppSession session=null;
 	
-	@Autowired
 	SmppSessionConfiguration sessionconfiguration;
 	
-	@Autowired
 	TPS tps;
 	
-	@Autowired
 	Stats stats;
 	
+	Object data;
 	
-	public void bind() {
+	public SessionService(SmppSessionConfiguration sessionconfiguration,DNService dnhandler,TPS tps,Stats stats,Object data) {
+		
+		this.sessionconfiguration=sessionconfiguration;
+		this.dnhandler=dnhandler;
+		this.tps=tps;
+		this.data=data;
+	}
+	
+	public void run() {
+		
+		this.threadname=Thread.currentThread().getName();
+		
+	}
+	private void bind() {
 		
 		SmppClient client=new DefaultSmppClient();
 

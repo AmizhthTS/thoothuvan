@@ -2,6 +2,7 @@ package com.smsapi.sc.config;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Executor;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
@@ -9,6 +10,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.context.annotation.Scope;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 import com.cloudhopper.smpp.SmppBindType;
 import com.cloudhopper.smpp.SmppSessionConfiguration;
@@ -92,5 +94,21 @@ public class SCConfig {
    		
    		return pool;
    	}
+   	
+   	
+   	@Bean(name="smscconnectorExecutor")
+	@Scope(value = ConfigurableBeanFactory.SCOPE_SINGLETON)
+    public Executor taskExecutor() {
+      ThreadPoolTaskExecutor poolExecutor = new ThreadPoolTaskExecutor();
+      poolExecutor.setCorePoolSize(2);
+      poolExecutor.setMaxPoolSize(Integer.parseInt(System.getenv("sessioncount")));
+      poolExecutor.setThreadNamePrefix("smscconnectorExecutor");
+      poolExecutor.initialize();
+      return poolExecutor;
+    }
+  
+   	
+   	@Bean("sessionpool")
+   	@
 
 }
